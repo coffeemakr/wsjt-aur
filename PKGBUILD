@@ -1,7 +1,7 @@
 pkgname="wsjt-svn"
 pkgver=10.0r7163
 pkgrel=1
-license=('GPLv2')
+license=('GPL')
 pkgdesc="For amateur VHF/UHF communication using state-of-the-art digital techniques"
 arch=('x86_64' 'i386')
 url="http://www.physics.princeton.edu/pulsar/K1JT/wspr.html"
