@@ -7,14 +7,14 @@ arch=('x86_64' 'i386')
 url="http://www.physics.princeton.edu/pulsar/K1JT/wspr.html"
 source=()
 makedepends=(
-	'gcc-fortran'
-	'subversion'
-	'python2'
+  'gcc-fortran'
+  'subversion'
+  'python2'
 )
 depends=(
-	'python3'
-	'python3-numpy'
-	'python2' # required?
+  'python3'
+  'python3-numpy'
+  'python2' # required?
   'libsamplerate'
   'portaudio'
   'fftw'
