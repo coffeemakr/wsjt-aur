@@ -1,4 +1,3 @@
-# Maintainer: Cyril Müller <cyril.mueller+aur@gmail.com>
 pkgname="wsjt-svn"
 pkgver=10.0r7163
 pkgrel=1
