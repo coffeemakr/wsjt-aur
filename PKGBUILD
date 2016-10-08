@@ -1,6 +1,9 @@
+# Maintainer: Cyril Müller <cyril.mueller+aur@gmail.com>
 pkgname="wsjt-svn"
-pkgver=r7163
+pkgver=10.0r7163
 pkgrel=1
+license=('GPLv2')
+pkgdesc="For amateur VHF/UHF communication using state-of-the-art digital techniques"
 arch=('x86_64' 'i386')
 url="http://www.physics.princeton.edu/pulsar/K1JT/wspr.html"
 source=()
@@ -13,8 +16,13 @@ depends=(
 	'python3'
 	'python3-numpy'
 	'python2' # required?
+  'libsamplerate'
+  'portaudio'
+  'fftw'
+  'python-pillow'
 )
 conflicts=("wsjt")
+provides=("wsjt")
 sha512sums=()
 _svnurl="svn://svn.code.sf.net/p/wsjt/wsjt/trunk"
 _svnlocal="${pkgname}-trunk"
@@ -22,9 +30,10 @@ _svncred=anonsvn
 
 pkgver() {
   cd "${_svnlocal}"
-  local version="$(svnversion)"
-  msg "Repo reports revision ${version}"
-  printf "r%d" "${version//[[:alpha:]]}"
+  local svnversion="$(svnversion)"
+  local version="$(grep 'AC_INIT' configure.ac  | sed 's/AC_INIT[(]\[WSJT\], \[//g' | sed 's/].*//g')"
+  msg "Repo reports revision ${svnversion}"
+  printf "%sr%d" "${version}" "${svnversion//[[:alpha:]]}"
 }
 
 prepare() {
@@ -54,4 +63,5 @@ package() {
   svnroot="${srcdir}/${_svnlocal}"
   cd "${svnroot}"
   make DESTDIR="${pkgdir}" install
+  install -D -m644 LICENSE.TXT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
